@@ -7,7 +7,7 @@ export default function Filter({
         <div className="filter__container">
             <p className="filter__p">
                 <span className="filter__label">{minOrMax} temp</span>
-                <span className="filter__value">
+                <span className="filter__value temp">
                     {minOrMax === 'min' ? filterTemp.min : filterTemp.max}°C
                 </span>
             </p>

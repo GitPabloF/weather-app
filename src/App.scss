@@ -8,6 +8,12 @@ $light-gray: #ffffff66;
     padding: 40px;
 }
 
+.temp {
+    color: $blue;
+    font-weight: 700;
+    font-size: 1.6em;
+}
+
 .header {
     h1 {
         color: $white;
@@ -15,6 +21,13 @@ $light-gray: #ffffff66;
         text-align: center;
         margin: 0 0 12px 0;
     }
+
+    &__error {
+        background-color: $light-gray;
+        padding: 1em;
+        border-radius: 0.5em;
+    }
+
     &__days {
         text-transform: uppercase;
         text-align: center;
@@ -41,12 +54,6 @@ $light-gray: #ffffff66;
     &__label {
         text-transform: uppercase;
         color: $white;
-    }
-
-    &__value {
-        color: $blue;
-        font-weight: 700;
-        font-size: 1.6em;
     }
 
     &__range-container {
@@ -84,9 +91,9 @@ $light-gray: #ffffff66;
 
     /* slider thumb */
     input[type='range']::-webkit-slider-thumb {
-        -webkit-appearance: none; 
+        -webkit-appearance: none;
         appearance: none;
-        margin-top: -7px; 
+        margin-top: -7px;
         background-color: #5887ff;
         border-radius: 8px;
         height: 16px;
@@ -109,7 +116,7 @@ $light-gray: #ffffff66;
     /* slider thumb */
     input[type='range']::-moz-range-thumb {
         background-color: #5887ff;
-        border: none; 
+        border: none;
         border-radius: 8px;
         height: 16px;
         width: 16px;
@@ -122,8 +129,62 @@ $light-gray: #ffffff66;
 }
 
 .weather-display {
+    margin-top: 2.5em;
     &__card {
         background-color: $light-gray;
-        border-radius: 20px;
+        height: 74px;
+        border-radius: 2em;
+        margin-bottom: 2em;
+        display: flex;
+        justify-content: space-between;
+        padding: 2em 2em 2em 1.5em;
+        align-items: center;
     }
+    &__icon-date {
+        display: flex;
+        align-items: center;
+    }
+
+    &__icon {
+        margin-right: 1em;
+    }
+    &__date > p {
+        display: flex;
+        flex-direction: column;
+        text-transform: lowercase;
+        font-size: 1.6em;
+        font-weight: 700;
+    }
+
+    &__number {
+        font-size: 30px;
+    }
+
+    &__temp-container {
+        text-transform: uppercase;
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+    }
+    &__temp {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.average-temp {
+    font-weight: 700;
+    font-size: 13px;
+    margin-top: 2.5em;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 16px;
+    color: $white;
+    margin-top: 25px;
 }

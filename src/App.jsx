@@ -33,10 +33,10 @@ export default function App() {
                 const response = await fetch(apiUrl);
                 const data = await response.json();
 
+                console.log(data);
                 // Options for date formatting
                 const dateOptions = {
-                    weekday: 'long',
-                    year: 'numeric',
+                    weekday: 'short',
                     month: 'long',
                     day: 'numeric'
                 };
@@ -46,22 +46,26 @@ export default function App() {
                     const timeStampinMs = day.dt * 1000;
                     const timeStampFormater = new Date(
                         timeStampinMs
-                    ).toLocaleDateString('fr-FR', dateOptions);
+                    ).toLocaleDateString('en-US', dateOptions);
                     // set date to an array of element
-                    const dateArray = timeStampFormater.split(' ');
+                    const dataArraySplited = timeStampFormater
+                        .split(' ')
+                        .map((element) => element.replace(',', ''));
 
                     return {
                         date: {
-                            dayOfWeek: dateArray[0],
-                            dayOfMonth: dateArray[1],
-                            month: dateArray[2]
+                            weekday: dataArraySplited[0],
+                            day: dataArraySplited[2],
+                            month: dataArraySplited[1]
                         },
                         tempMin: day.temp.min,
-                        tempMax: day.temp.max
+                        tempMax: day.temp.max,
+                        icon: day.weather[0].icon
                     };
                 });
                 setDataValues(dataArray);
                 setFilteredData(dataArray);
+                console.log(dataArray);
                 setError(false);
             } catch (error) {
                 console.error(
@@ -94,7 +98,7 @@ export default function App() {
             0
         );
         const averageTemperature = totalTemperature / (dataValues.length * 2);
-        return Math.round(averageTemperature * 100) / 100;
+        return Math.floor(averageTemperature);
     }
 
     // -- Filter --
@@ -129,7 +133,6 @@ export default function App() {
                     </section>
                     <section className="weather-display" id="weather-display">
                         {filteredData.map((data, index) => {
-                            console.log(data);
                             return (
                                 <WeatherCard
                                     key={`weather-display__card-${index}`}
@@ -141,7 +144,7 @@ export default function App() {
                     <div className="average-temp">
                         <p>AVERAGE TEMP : {calculateAverageTemp()}°C</p>
                     </div>
-                    <nav>
+                    <nav className="nav" id="nav">
                         <span className="nav__item nav__item--prev">
                             previous
                         </span>

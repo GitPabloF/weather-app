@@ -1,0 +1,129 @@
+// colors :
+$white: white;
+$blue: #5887ff;
+$dark-gray: #323232;
+$light-gray: #ffffff66;
+
+#root {
+    padding: 40px;
+}
+
+.header {
+    h1 {
+        color: $white;
+        font-size: 4em;
+        text-align: center;
+        margin: 0 0 12px 0;
+    }
+    &__days {
+        text-transform: uppercase;
+        text-align: center;
+        color: $blue;
+        font-size: 1.4em;
+    }
+}
+
+.filter {
+    display: flex;
+    box-sizing: border-box;
+    margin: 0 auto;
+    width: 412px;
+    justify-content: space-between;
+    &__p {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        & > span {
+            display: block;
+        }
+    }
+
+    &__label {
+        text-transform: uppercase;
+        color: $white;
+    }
+
+    &__value {
+        color: $blue;
+        font-weight: 700;
+        font-size: 1.6em;
+    }
+
+    &__range-container {
+        background-color: $light-gray;
+        height: 30px;
+        width: 180px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 110px;
+    }
+
+    /*********** Baseline, reset styles ***********/
+    input[type='range'] {
+        -webkit-appearance: none;
+        appearance: none;
+        background: transparent;
+        cursor: pointer;
+        width: 140px;
+    }
+
+    /* Removes default focus */
+    input[type='range']:focus {
+        outline: none;
+    }
+
+    /******** Chrome, Safari, Opera and Edge Chromium styles ********/
+    /* slider track */
+    input[type='range']::-webkit-slider-runnable-track {
+        background-color: #dbe5ff;
+        border-radius: 0px;
+        height: 2px;
+        overflow: unset;
+    }
+
+    /* slider thumb */
+    input[type='range']::-webkit-slider-thumb {
+        -webkit-appearance: none; /* Override default look */
+        appearance: none;
+        margin-top: -7px; /* Centers thumb on the track */
+        background-color: #5887ff;
+        border-radius: 8px;
+        height: 16px;
+        width: 16px;
+    }
+
+    input[type='range']:focus::-webkit-slider-thumb {
+        outline: 3px solid #5887ff;
+        outline-offset: 0.1px;
+    }
+
+    /*********** Firefox styles ***********/
+    /* slider track */
+    input[type='range']::-moz-range-track {
+        background-color: #dbe5ff;
+        border-radius: 0px;
+        height: 2px;
+    }
+
+    /* slider thumb */
+    input[type='range']::-moz-range-thumb {
+        background-color: #5887ff;
+        border: none; /*Removes extra border that FF applies*/
+        border-radius: 8px;
+        height: 16px;
+        width: 16px;
+    }
+
+    input[type='range']:focus::-moz-range-thumb {
+        outline: 3px solid #5887ff;
+        outline-offset: 0.1px;
+    }
+}
+
+.weather-display {
+    &__card {
+        background-color: $light-gray;
+        border-radius: 20px;
+    }
+}

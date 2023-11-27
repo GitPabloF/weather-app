@@ -33,7 +33,7 @@ export default function App() {
         day: 'numeric'
     };
 
-    // Fetch weather data on component mount (useEffect ensures the API call is made after the component has rendered)
+    // Fetch weather data on component mount 
     useEffect(() => {
         async function fetchData() {
             try {

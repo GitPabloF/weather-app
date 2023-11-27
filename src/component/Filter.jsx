@@ -17,6 +17,7 @@ export default function Filter({
                     name="filter__range"
                     id={`filter__range--${minOrMax}`}
                     className="filter__range"
+                    aria-label={`Adjust ${minOrMax} temperature`}
                     min="-50"
                     max="50"
                     value={minOrMax === 'min' ? filterTemp.min : filterTemp.max}

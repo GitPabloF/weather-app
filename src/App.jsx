@@ -1,32 +1,37 @@
 import { useState, useEffect } from 'react';
 
-import './App.css';
+import './assets/App.css';
 import Header from './component/Header';
 import Filter from './component/Filter';
 import WeatherCard from './component/WeatherCard';
 import NavItem from './component/NavItem';
 
 export default function App() {
-    // api url and parameters
+    // api URL and parameters
     const apiParameters = {
         city: 'Paris',
         days: '15',
         units: 'metric'
     };
-    const apiUrl = `http://api.openweathermap.org/data/2.5/forecast/daily?q=${apiParameters.city}&cnt=${apiParameters.days}&units=${apiParameters.units}&appid=${process.env.REACT_APP_API_KEY}`;
 
-    // set the initial values for the filter
-    const filterTempInitial = {
-        min: 5,
-        max: 30
-    };
+    const apiUrl = `http://api.openweathermap.org/data/2.5/forecast/daily?q=${apiParameters.city}&cnt=${apiParameters.days}&units=${apiParameters.units}&appid=${process.env.REACT_APP_API_KEY}`;
 
     // State variables
     const [dataValues, setDataValues] = useState([]);
+    const [dataSliced, setDataSliced] = useState([]);
     const [error, setError] = useState(null);
-    const [filterTemp, setFilterTemp] = useState(filterTempInitial);
-    const [filteredData, setFilteredData] = useState([]);
+    const [filterTemp, setFilterTemp] = useState({
+        min: 5,
+        max: 30
+    });
     const [pagination, setPagination] = useState(0);
+
+    // Options for date formatting
+    const dateOptions = {
+        weekday: 'short',
+        month: 'long',
+        day: 'numeric'
+    };
 
     // Fetch weather data on component mount (useEffect ensures the API call is made after the component has rendered)
     useEffect(() => {
@@ -35,15 +40,8 @@ export default function App() {
                 const response = await fetch(apiUrl);
                 const data = await response.json();
 
-                // Options for date formatting
-                const dateOptions = {
-                    weekday: 'short',
-                    month: 'long',
-                    day: 'numeric'
-                };
-
                 // Map weather data with a cleaner date format
-                const dataArray = data.list.map((day) => {
+                const formattedWeatherData = data.list.map((day) => {
                     const timeStampinMs = day.dt * 1000;
                     const timeStampFormater = new Date(
                         timeStampinMs
@@ -64,9 +62,12 @@ export default function App() {
                         icon: day.weather[0].icon
                     };
                 });
-                const dataSliced = dataArray.slice(pagination, pagination + 5);
-                setDataValues(dataArray);
-                setFilteredData(dataSliced);
+                const slicedData = formattedWeatherData.slice(
+                    pagination,
+                    pagination + 5
+                );
+                setDataValues(formattedWeatherData);
+                setDataSliced(slicedData);
                 setError(false);
             } catch (error) {
                 console.error(
@@ -82,36 +83,35 @@ export default function App() {
     // filtered data re-render when filterTemp change
     useEffect(() => {
         function filterData(filter) {
-            const filterdData = dataValues.filter(
+            const filteredData = dataValues.filter(
                 (data) =>
                     parseInt(data.tempMin) >= filterTemp.min &&
                     parseInt(data.tempMax) <= filterTemp.max
             );
-            setFilteredData(filterdData);
+            setDataSliced(filteredData.slice(pagination, pagination + 5));
         }
         filterData(filterTemp);
     }, [filterTemp]);
 
-    // calculte the average temp
+    // Handle filter change
+    function handleChangeFilterTemp(event, minOrMax) {
+        setFilterTemp((prevFilterTemp) => ({
+            ...prevFilterTemp,
+            [minOrMax]: parseInt(event.target.value)
+        }));
+    }
+
+    // calculate the average temp
     function calculateAverageTemp() {
         if (dataValues.length === 0) {
             return 0;
         }
-        // Sum of max and min temp
         const totalTemperature = dataValues.reduce(
             (accumulator, day) => accumulator + day.tempMin + day.tempMax,
             0
         );
         const averageTemperature = totalTemperature / (dataValues.length * 2);
         return Math.floor(averageTemperature);
-    }
-
-    // Filter
-    function handleChangeFilterTemp(event, minOrMax) {
-        setFilterTemp((prevFilterTemp) => ({
-            ...prevFilterTemp,
-            [minOrMax]: parseInt(event.target.value)
-        }));
     }
 
     return (
@@ -137,7 +137,7 @@ export default function App() {
                         />
                     </section>
                     <section className="weather-display" id="weather-display">
-                        {filteredData.map((data, index) => {
+                        {dataSliced.map((data, index) => {
                             return (
                                 <WeatherCard
                                     key={`weather-display__card-${index}`}

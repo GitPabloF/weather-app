@@ -4,8 +4,30 @@ $blue: #5887ff;
 $dark-gray: #323232;
 $light-gray: #ffffff66;
 
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+        'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+        'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    justify-content: center;
+    min-height: 100vw;
+    background: linear-gradient(0.38turn, #dbe5ff, #91affb, #e3ebff) no-repeat;
+    font-weight: 500;
+    font-size: 10px;
+    color: #323232;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
+}
+
 #root {
     padding: 40px;
+    font-family: 'Inter', sans-serif;
 }
 
 .temp {

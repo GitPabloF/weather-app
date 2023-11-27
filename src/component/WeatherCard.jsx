@@ -3,7 +3,7 @@ export default function WeatherCard({ data }) {
     return (
         <div className="weather-display__card">
             <div className="weather-display__icon-date">
-                <img className="weather-display__icon" src={inconUrl} alt="" />
+                <img className="weather-display__icon" src={inconUrl} alt="Weather icon" />
                 <div className="weather-display__date">
                     <p>
                         <span className="weather-display__day">

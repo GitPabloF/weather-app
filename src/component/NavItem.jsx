@@ -35,6 +35,7 @@ export default function NavItem({
             }`}
             onClick={handleClick}
             disabled={btnGray}
+            aria-label={`Go to ${prevOrNext} page`}
         >
             {prevOrNext}
         </button>

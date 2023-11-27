@@ -1,0 +1,196 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  justify-content: center;
+  min-height: 100vw;
+  background: linear-gradient(0.38turn, #dbe5ff, #91affb, #e3ebff) no-repeat;
+  font-weight: 500;
+  font-size: 10px;
+  color: #323232;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+#root {
+  padding: 40px;
+  font-family: "Inter", sans-serif;
+}
+
+.temp {
+  color: #5887ff;
+  font-weight: 700;
+  font-size: 1.6em;
+}
+
+.header h1 {
+  color: white;
+  font-size: 4em;
+  text-align: center;
+  margin: 0 0 12px 0;
+}
+.header__error {
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 1em;
+  border-radius: 0.5em;
+}
+.header__days {
+  text-transform: uppercase;
+  text-align: center;
+  color: #5887ff;
+  font-size: 1.4em;
+}
+
+.filter {
+  display: flex;
+  box-sizing: border-box;
+  margin: 0 auto;
+  width: 412px;
+  justify-content: space-between;
+  /*********** Baseline, reset styles ***********/
+  /* Removes default focus */
+  /******** Chrome, Safari, Opera and Edge Chromium styles ********/
+  /* slider track */
+  /* slider thumb */
+  /*********** Firefox styles ***********/
+  /* slider track */
+  /* slider thumb */
+}
+.filter__p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.filter__p > span {
+  display: block;
+}
+.filter__label {
+  text-transform: uppercase;
+  color: white;
+}
+.filter__range-container {
+  background-color: rgba(255, 255, 255, 0.4);
+  height: 30px;
+  width: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 110px;
+}
+.filter input[type=range] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  background: transparent;
+  cursor: pointer;
+  width: 140px;
+}
+.filter input[type=range]:focus {
+  outline: none;
+}
+.filter input[type=range]::-webkit-slider-runnable-track {
+  background-color: #dbe5ff;
+  border-radius: 0px;
+  height: 2px;
+  overflow: unset;
+}
+.filter input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: -7px;
+  background-color: #5887ff;
+  border-radius: 8px;
+  height: 16px;
+  width: 16px;
+}
+.filter input[type=range]:focus::-webkit-slider-thumb {
+  outline: 3px solid #5887ff;
+  outline-offset: 0.1px;
+}
+.filter input[type=range]::-moz-range-track {
+  background-color: #dbe5ff;
+  border-radius: 0px;
+  height: 2px;
+}
+.filter input[type=range]::-moz-range-thumb {
+  background-color: #5887ff;
+  border: none;
+  border-radius: 8px;
+  height: 16px;
+  width: 16px;
+}
+.filter input[type=range]:focus::-moz-range-thumb {
+  outline: 3px solid #5887ff;
+  outline-offset: 0.1px;
+}
+
+.weather-display {
+  margin-top: 2.5em;
+}
+.weather-display__card {
+  background-color: rgba(255, 255, 255, 0.4);
+  height: 74px;
+  border-radius: 2em;
+  margin-bottom: 2em;
+  display: flex;
+  justify-content: space-between;
+  padding: 2em 2em 2em 1.5em;
+  align-items: center;
+}
+.weather-display__icon-date {
+  display: flex;
+  align-items: center;
+}
+.weather-display__icon {
+  margin-right: 1em;
+}
+.weather-display__date > p {
+  display: flex;
+  flex-direction: column;
+  text-transform: lowercase;
+  font-size: 1.6em;
+  font-weight: 700;
+}
+.weather-display__number {
+  font-size: 30px;
+}
+.weather-display__temp-container {
+  text-transform: uppercase;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+.weather-display__temp {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.average-temp {
+  font-weight: 700;
+  font-size: 13px;
+  margin-top: 2.5em;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  margin-top: 25px;
+}
+.nav__item {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 16px;
+  color: #323232;
+}
+.nav .gray {
+  color: rgba(255, 255, 255, 0.4);
+}

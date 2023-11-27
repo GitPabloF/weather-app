@@ -7,13 +7,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
   display: flex;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vw;
   background: linear-gradient(0.38turn, #DBE5FF, #91AFFB, #E3EBFF) no-repeat;
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 10px;
   color: #323232;
-  overflow: hidden;
 }
 
 

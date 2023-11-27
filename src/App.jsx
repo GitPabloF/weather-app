@@ -4,12 +4,13 @@ import './App.css';
 import Header from './component/Header';
 import Filter from './component/Filter';
 import WeatherCard from './component/WeatherCard';
+import NavItem from './component/NavItem';
 
 export default function App() {
     // api url and parameters
     const apiParameters = {
         city: 'Paris',
-        days: '5',
+        days: '15',
         units: 'metric'
     };
     const apiUrl = `http://api.openweathermap.org/data/2.5/forecast/daily?q=${apiParameters.city}&cnt=${apiParameters.days}&units=${apiParameters.units}&appid=${process.env.REACT_APP_API_KEY}`;
@@ -25,6 +26,7 @@ export default function App() {
     const [error, setError] = useState(null);
     const [filterTemp, setFilterTemp] = useState(filterTempInitial);
     const [filteredData, setFilteredData] = useState([]);
+    const [pagination, setPagination] = useState(0);
 
     // Fetch weather data on component mount (useEffect ensures the API call is made after the component has rendered)
     useEffect(() => {
@@ -33,7 +35,6 @@ export default function App() {
                 const response = await fetch(apiUrl);
                 const data = await response.json();
 
-                console.log(data);
                 // Options for date formatting
                 const dateOptions = {
                     weekday: 'short',
@@ -63,9 +64,9 @@ export default function App() {
                         icon: day.weather[0].icon
                     };
                 });
+                const dataSliced = dataArray.slice(pagination, pagination + 5);
                 setDataValues(dataArray);
-                setFilteredData(dataArray);
-                console.log(dataArray);
+                setFilteredData(dataSliced);
                 setError(false);
             } catch (error) {
                 console.error(
@@ -76,16 +77,20 @@ export default function App() {
             }
         }
         fetchData();
-    }, []);
+    }, [pagination]);
 
-    // filtered data
-    function filterData(filter) {
-        const filterdData = dataValues.filter(
-            (data) =>
-                data.tempMin >= filterTemp.min && data.tempMax <= filterTemp.max
-        );
-        setFilteredData(filterdData);
-    }
+    // filtered data re-render when filterTemp change
+    useEffect(() => {
+        function filterData(filter) {
+            const filterdData = dataValues.filter(
+                (data) =>
+                    parseInt(data.tempMin) >= filterTemp.min &&
+                    parseInt(data.tempMax) <= filterTemp.max
+            );
+            setFilteredData(filterdData);
+        }
+        filterData(filterTemp);
+    }, [filterTemp]);
 
     // calculte the average temp
     function calculateAverageTemp() {
@@ -101,12 +106,12 @@ export default function App() {
         return Math.floor(averageTemperature);
     }
 
-    // -- Filter --
+    // Filter
     function handleChangeFilterTemp(event, minOrMax) {
-        const newFilterTemp = { ...filterTemp, [minOrMax]: event.target.value };
-        setFilterTemp(newFilterTemp);
-
-        filterData(newFilterTemp);
+        setFilterTemp((prevFilterTemp) => ({
+            ...prevFilterTemp,
+            [minOrMax]: parseInt(event.target.value)
+        }));
     }
 
     return (
@@ -145,10 +150,18 @@ export default function App() {
                         <p>AVERAGE TEMP : {calculateAverageTemp()}°C</p>
                     </div>
                     <nav className="nav" id="nav">
-                        <span className="nav__item nav__item--prev">
-                            previous
-                        </span>
-                        <span className="nav__item nav__item--next">next</span>
+                        <NavItem
+                            pagination={pagination}
+                            setPagination={setPagination}
+                            dataValues={dataValues}
+                            prevOrNext={'previous'}
+                        />
+                        <NavItem
+                            pagination={pagination}
+                            setPagination={setPagination}
+                            dataValues={dataValues}
+                            prevOrNext={'next'}
+                        />
                     </nav>
                 </main>
             )}

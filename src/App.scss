@@ -182,9 +182,19 @@ $light-gray: #ffffff66;
 .nav {
     display: flex;
     justify-content: space-between;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 16px;
     color: $white;
     margin-top: 25px;
+
+    &__item {
+        cursor: pointer;
+        border: none;
+        background-color: transparent;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 16px;
+        color: $dark-gray;
+    }
+    .gray {
+        color: $light-gray;
+    }
 }

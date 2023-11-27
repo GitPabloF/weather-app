@@ -160,9 +160,18 @@
 .nav {
   display: flex;
   justify-content: space-between;
+  color: white;
+  margin-top: 25px;
+}
+.nav__item {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
   text-transform: uppercase;
   font-weight: 700;
   font-size: 16px;
-  color: white;
-  margin-top: 25px;
+  color: #323232;
+}
+.nav .gray {
+  color: rgba(255, 255, 255, 0.4);
 }

@@ -21,8 +21,8 @@ export default function App() {
     const [dataSliced, setDataSliced] = useState([]);
     const [error, setError] = useState(null);
     const [filterTemp, setFilterTemp] = useState({
-        min: 5,
-        max: 30
+        min: -50,
+        max: 50
     });
     const [pagination, setPagination] = useState(0);
 

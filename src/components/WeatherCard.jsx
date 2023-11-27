@@ -1,9 +1,14 @@
 export default function WeatherCard({ data }) {
     const inconUrl = `http://openweathermap.org/img/wn/${data.icon}.png`;
+
     return (
-        <div className="weather-display__card">
+        <div className={`weather-display__card weather-card`}>
             <div className="weather-display__icon-date">
-                <img className="weather-display__icon" src={inconUrl} alt="Weather icon" />
+                <img
+                    className="weather-display__icon"
+                    src={inconUrl}
+                    alt="Weather icon"
+                />
                 <div className="weather-display__date">
                     <p>
                         <span className="weather-display__day">

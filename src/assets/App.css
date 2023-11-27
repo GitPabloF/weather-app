@@ -5,7 +5,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   display: flex;
   justify-content: center;
-  min-height: 100vw;
+  width: 100vw;
+  height: 100vh;
   background: linear-gradient(0.38turn, #dbe5ff, #91affb, #e3ebff) no-repeat;
   font-weight: 500;
   font-size: 10px;
@@ -17,8 +18,18 @@ code {
 }
 
 #root {
-  padding: 40px;
   font-family: "Inter", sans-serif;
+  overflow: auto;
+  width: 100%;
+}
+
+#App {
+  padding: 40px;
+}
+
+main {
+  max-width: 412px;
+  margin: 0 auto;
 }
 
 .temp {
@@ -131,6 +142,19 @@ code {
 .weather-display {
   margin-top: 2.5em;
 }
+.weather-display .weather-card {
+  animation: fadeInDown 0.8s ease-out;
+}
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 .weather-display__card {
   background-color: rgba(255, 255, 255, 0.4);
   height: 74px;
@@ -193,4 +217,29 @@ code {
 }
 .nav .gray {
   color: rgba(255, 255, 255, 0.4);
+}
+
+@media screen and (max-width: 520px) {
+  body {
+    font-size: 8px;
+  }
+  .filter {
+    width: unset;
+    flex-direction: column;
+  }
+  .filter__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .filter__p {
+    justify-content: unset;
+  }
+  .filter__value {
+    margin: 0 1em;
+  }
+  .weather-display__temp-container {
+    margin-left: 1em;
+  }
 }

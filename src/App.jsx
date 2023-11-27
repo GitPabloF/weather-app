@@ -33,7 +33,7 @@ export default function App() {
         day: 'numeric'
     };
 
-    // Fetch weather data on component mount 
+    // Fetch weather data on component mount
     useEffect(() => {
         async function fetchData() {
             try {
@@ -115,7 +115,7 @@ export default function App() {
     }
 
     return (
-        <>
+        <div className="App" id="App">
             <Header error={error} apiParameters={apiParameters} />
 
             {!error && (
@@ -165,6 +165,6 @@ export default function App() {
                     </nav>
                 </main>
             )}
-        </>
+        </div>
     );
 }

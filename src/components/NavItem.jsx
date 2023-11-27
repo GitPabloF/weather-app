@@ -7,6 +7,7 @@ export default function NavItem({
     prevOrNext
 }) {
     const [btnGray, setBtnGray] = useState('');
+    
     // Effect to update the button state based on pagination and data length
     useEffect(() => {
         if (
